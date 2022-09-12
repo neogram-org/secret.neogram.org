@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Neogram",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,8 +10,11 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.8.3",
+    "firebase": "^9.9.3",
     "quasar": "^2.0.0",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vue-router": "4",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -21,6 +24,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "prettier": "2.7.1",
     "sass": "1.32.12",
     "sass-loader": "^12.0.0",
     "vue-cli-plugin-quasar": "~5.0.1"
