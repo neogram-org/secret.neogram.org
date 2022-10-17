@@ -1,6 +1,6 @@
 <template>
   <p>Dashboard</p>
-  <p>Welcome, {{ user }}</p>
+  <p>Welcome, {{ user.data }}</p>
   <q-btn @click="logOut"> Logout </q-btn>
 </template>
 

@@ -11,7 +11,16 @@
           icon="menu"
         />
 
-        <q-toolbar-title> Neogram </q-toolbar-title>
+        <q-toolbar-title
+          style="
+             {
+              cursor: pointer;
+            }
+          "
+          @click="goToHome"
+        >
+          Neogram
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
     <q-drawer v-model="leftDrawerOpen" class="bg-grey-2">
@@ -49,6 +58,8 @@
   </q-layout>
 </template>
 
+<style></style>
+
 <script setup>
 // console.log("Login:" + process.env.VUE_APP_API_KEY);
 
@@ -59,6 +70,9 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import { auth } from "./firebaseConfig";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const store = useStore();
 
@@ -74,5 +88,9 @@ const leftDrawerOpen = ref(false);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+function goToHome() {
+  router.push("/");
 }
 </script>
