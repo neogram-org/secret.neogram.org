@@ -1,7 +1,9 @@
 <template>
-  <p>Welcome, {{ user.data.email }}</p>
+  <p>
+    {{ user.data != null ? "Welcome, " + user.data.email : "Please login" }}
+  </p>
 
-  <div class="tableDiv">
+  <div v-if="user.data" class="tableDiv">
     <table>
       <tr>
         <th>Date</th>
@@ -13,6 +15,8 @@
       </tr>
     </table>
   </div>
+
+  <div v-else></div>
   <!-- <q-btn @click="show = !show" >Show Messages</q-btn> -->
   <!-- <h2 id= "10"> -->
   <!-- <p v-if="show"> {{messages}} </p> -->
