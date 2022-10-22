@@ -1,8 +1,9 @@
 import { createStore } from "vuex";
-import { auth } from "./firebaseConfig";
+import { auth, provider } from "./firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 
@@ -46,6 +47,36 @@ const store = createStore({
       }
     },
 
+    async LoginWithGoogle(context) {
+      await signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // const credential = provider.credentialFromResult(result);
+          // const token = credential.accessToken;
+          // // The signed-in user info.
+          const user = result.user;
+
+          console.log("store");
+          console.log(user);
+
+          context.commit("SET_USER", user);
+          // ...
+        })
+        .catch((error) => {
+          console.log(error);
+          // Handle Errors here.
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
+          // // The email of the user's account used.
+          // const email = error.customData.email;
+          // // The AuthCredential type that was used.
+          // const credential = provider.credentialFromError(error);
+          // ...
+
+          // console.log(errorCode + errorMessage + email + credential)
+        });
+    },
+
     async logIn(context, { email, password }) {
       const response = await signInWithEmailAndPassword(auth, email, password);
       if (response) {
@@ -60,6 +91,8 @@ const store = createStore({
       if (user) {
         context.commit("SET_USER", {
           email: user.email,
+          name: user.displayName,
+          photo: user.photoURL,
         });
       } else {
         context.commit("SET_USER", null);

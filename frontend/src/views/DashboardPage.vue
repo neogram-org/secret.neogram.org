@@ -1,6 +1,6 @@
 <template>
   <p>
-    {{ user.data != null ? "Welcome, " + user.data.email : "Please login" }}
+    {{ user.data != null ? "Welcome, " + user.data.name : "Please login" }}
   </p>
 
   <div v-if="user.data" class="tableDiv">
@@ -62,6 +62,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 const user = computed(() => {
+  console.log(store.getters.user);
   return store.getters.user;
 });
 

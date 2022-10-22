@@ -50,14 +50,14 @@
         </q-item>
 
         <div v-else-if="user.data == null">
+          <q-item clickable tag="a" href="/">
+            <q-item-section>
+              <q-item-label>Home</q-item-label>
+            </q-item-section>
+          </q-item>
           <q-item clickable tag="a" href="/login">
             <q-item-section>
               <q-item-label>Login</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable tag="a" href="/register">
-            <q-item-section>
-              <q-item-label>Register</q-item-label>
             </q-item-section>
           </q-item>
         </div>
