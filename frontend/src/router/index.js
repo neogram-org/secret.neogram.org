@@ -5,8 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: () => import("../views/HomePage.vue"),
+      name: "dashboard",
+      component: () => import("../views/DashboardPage.vue"),
     },
     {
       path: "/register",
@@ -18,10 +18,15 @@ const router = createRouter({
       name: "login",
       component: () => import("../views/LoginPage.vue"),
     },
+    // {
+    //   path: "/dashboard",
+    //   name: "dashboard",
+    //   component: () => import("../views/DashboardPage.vue"),
+    // },
     {
-      path: "/dashboard",
-      name: "dashboard",
-      component: () => import("../views/DashboardPage.vue"),
+      path: "/message",
+      name: "message",
+      component: () => import("../views/NewMessage.vue"),
     },
     {
       path: "/:pathMatch(.*)*",

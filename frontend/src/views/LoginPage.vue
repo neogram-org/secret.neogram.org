@@ -43,7 +43,7 @@ const Login = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       console.log(data);
-      router.push("/dashboard");
+      router.push("/");
     })
     .catch((error) => {
       console.log(error.code);

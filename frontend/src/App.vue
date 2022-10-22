@@ -25,15 +25,27 @@
     </q-header>
     <q-drawer v-model="leftDrawerOpen" class="bg-grey-2">
       <q-list>
-        <q-item clickable tag="a" href="/">
+        <!-- <q-item clickable tag="a" href="/">
           <q-item-section>
             <q-item-label>Home</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item> -->
 
-        <q-item v-if="user.data != null" clickable tag="a" href="/dashboard">
+        <q-item v-if="user.data != null" clickable tag="a" href="/">
           <q-item-section>
             <q-item-label>Dashboard</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item v-if="user.data != null" clickable tag="a" href="/message">
+          <q-item-section>
+            <q-item-label>Send Message</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item v-if="user.data != null" clickable tag="a" @click="logOut">
+          <q-item-section>
+            <q-item-label>Logout</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -93,4 +105,9 @@ function toggleLeftDrawer() {
 function goToHome() {
   router.push("/");
 }
+
+const logOut = async () => {
+  await store.dispatch("logOut");
+  router.push("/");
+};
 </script>
