@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-form class="container" @submit="Login">
+    <q-form class="container" @submit="SendMessage">
       <q-input outlined type="text" placeholder="Message" v-model="msg" />
 
       <q-btn @click="SendMessage" class="btn">Send</q-btn>
