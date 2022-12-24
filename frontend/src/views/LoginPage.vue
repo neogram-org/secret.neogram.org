@@ -36,32 +36,50 @@
 </style>
 
 <script setup>
-// import { ref } from "vue";
+import { watch } from "vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
 import { useRouter } from "vue-router";
+
 import {
   getAuth,
+  getRedirectResult,
   GoogleAuthProvider,
+  signInWithRedirect,
   // signInWithEmailAndPassword,
-  signInWithPopup,
+  // signInWithPopup,
 } from "firebase/auth";
 
+/// For using in email and passeword auth
 // const email = ref("");
 // const password = ref("");
+
 const router = useRouter();
+const auth = getAuth();
+const store = useStore();
+
+auth.onAuthStateChanged((user) => {
+  store.dispatch("getLoggedInUser", user);
+});
+
+const user = computed(() => {
+  return store.getters.user;
+});
 
 const LoginWithGoogle = () => {
-  console.log("Here");
-  const auth = getAuth();
-  signInWithPopup(auth, new GoogleAuthProvider())
-    .then((data) => {
-      console.log(data);
-      router.push("/");
-    })
-    .catch((error) => {
-      console.log(error.code);
-      alert(error.message);
-    });
+  signInWithRedirect(auth, new GoogleAuthProvider());
 };
+
+watch(
+  getRedirectResult(auth).then((data) => {
+    console.log(user.value);
+    if (data) {
+      router.push("/");
+    } else if (user.value.data != null) {
+      router.push("/");
+    }
+  })
+);
 
 // const Login = () => {
 //   console.log("Login:" + process.env.VUE_APP_API_KEY);
@@ -77,4 +95,5 @@ const LoginWithGoogle = () => {
 //       alert(error.message);
 //     });
 // };
+
 </script>

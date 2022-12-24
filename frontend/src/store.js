@@ -2,8 +2,10 @@ import { createStore } from "vuex";
 import { auth, provider } from "./firebaseConfig";
 import {
   createUserWithEmailAndPassword,
+  getRedirectResult,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  // signInWithPopup,
+  signInWithRedirect,
   signOut,
 } from "firebase/auth";
 
@@ -48,7 +50,9 @@ const store = createStore({
     },
 
     async LoginWithGoogle(context) {
-      await signInWithPopup(auth, provider)
+      await signInWithRedirect(auth, provider);
+
+      await getRedirectResult(auth)
         .then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           // const credential = provider.credentialFromResult(result);
