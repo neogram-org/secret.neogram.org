@@ -24,7 +24,7 @@ const router = createRouter({
     //   component: () => import("../views/DashboardPage.vue"),
     // },
     {
-      path: "/message",
+      path: "/message/:userID",
       name: "message",
       component: () => import("../views/NewMessage.vue"),
     },
